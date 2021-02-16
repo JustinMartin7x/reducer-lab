@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const useRecord = (init) => {
+export const useRecord = (init) => {
   const [before, setBefore] = useState([]);
   const [current, setCurrent] = useState(init);
   const [after, setAfter] = useState([]);
@@ -29,24 +29,3 @@ const useRecord = (init) => {
     current,
   };
 };
-
-function App() {
-  const { current, undo, redo, record } = useRecord('#FF0000');
-
-  return (
-    <>
-      <button data-testid="undo" onClick={undo}>undo</button>
-      <button data-testid="redo" onClick={redo}>redo</button>
-      <input type="color"
-        data-testid="input" 
-        value={current}
-        onChange={({ target }) => record(target.value)}
-      />
-      <div data-testid="display"
-        style={{ backgroundColor: current, width: '10rem', height: '10rem' }}
-      ></div>
-    </>
-  );
-}
-
-export default App;
